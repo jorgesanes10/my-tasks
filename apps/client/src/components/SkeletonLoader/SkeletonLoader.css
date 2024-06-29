@@ -1,0 +1,16 @@
+.skeleton-loader {
+  height: 50px;
+  width: 400px;
+  border-radius: 14px;
+  animation: pulse 2s infinite alternate;
+  margin-bottom: 40px;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #e2e2e2; /* Initial color */
+  }
+  100% {
+    background-color: #999999; /* Target color */
+  }
+}

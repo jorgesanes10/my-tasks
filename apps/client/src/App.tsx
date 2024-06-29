@@ -12,7 +12,10 @@ function App() {
   const [showHelp, setShowHelp] = useState(false);
   const helpTarget = useRef(null);
 
-  const query = useQuery({ queryKey: ["tasks"], queryFn: getTasks });
+  const { data } = useQuery({
+    queryKey: ["tasks"],
+    queryFn: getTasks,
+  });
 
   return (
     <main>
@@ -81,7 +84,7 @@ function App() {
         <br />
         <Row className="tasks-list-row">
           <Col md={8}>
-            <TasksList tasks={query.data} />
+            <TasksList tasks={data} />
           </Col>
         </Row>
       </Container>
