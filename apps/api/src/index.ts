@@ -80,18 +80,6 @@ fastify.get(
   }
 );
 
-fastify.get(
-  "/tasks/:id",
-  { preHandler: [fastify.authenticate] },
-  async (request: any, reply: any) => {
-    const collection = fastify.mongo.db.collection("my-tasks");
-    const task = await collection.findOne({
-      _id: new fastify.mongo.ObjectId(request.params.id),
-    });
-    reply.send(task);
-  }
-);
-
 fastify.post(
   "/tasks",
   { preHandler: [fastify.authenticate] },
