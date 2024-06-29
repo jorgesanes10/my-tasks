@@ -14,7 +14,7 @@ export const getTasks = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error("There was an error with the request. Try again later");
   }
 
   return response.json();
@@ -34,7 +34,7 @@ export const addTask = async (task: TaskType) => {
   });
 
   if (!response.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error("There was an error with the request. Try again later");
   }
 
   return response.json();
@@ -62,7 +62,7 @@ export const updateTask = async (task: TaskType) => {
   });
 
   if (!response.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error("There was an error with the request. Try again later");
   }
 
   return response.json();
@@ -81,7 +81,7 @@ export const deleteTask = async (taskId: string) => {
   });
 
   if (!response.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error("There was an error with the request. Try again later");
   }
 
   return response.json();
@@ -106,7 +106,7 @@ export const login = async (credentials: {
   });
 
   if (!response.ok) {
-    throw new Error("Network response was not ok");
+    throw new Error("Unable to sign in. Verify your username and password");
   }
 
   return response.json();

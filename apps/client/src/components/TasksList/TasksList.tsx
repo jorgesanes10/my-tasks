@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "react-bootstrap";
 import type { TaskType } from "../../../types";
@@ -13,6 +13,7 @@ interface TasksListProps {
 export const TasksList = ({ tasks }: TasksListProps) => {
   const queryClient = useQueryClient();
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [error, setError] = useState("");
 
   const mutation = useMutation({
     mutationFn: addTask,
@@ -40,7 +41,15 @@ export const TasksList = ({ tasks }: TasksListProps) => {
   return (
     <section ref={sectionRef}>
       {tasks?.length > 0 ? (
-        tasks?.map((task) => <Task key={task._id} task={task} />)
+        tasks?.map((task) => (
+          <Task
+            reportError={(reportedError) => {
+              setError(reportedError);
+            }}
+            key={task._id}
+            task={task}
+          />
+        ))
       ) : (
         <>
           <SkeletonLoader />
@@ -48,6 +57,8 @@ export const TasksList = ({ tasks }: TasksListProps) => {
           <SkeletonLoader />
         </>
       )}
+
+      <p className="text-danger">{error}</p>
 
       <Button
         id="add-task-button"

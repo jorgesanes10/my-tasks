@@ -10,9 +10,10 @@ import radioUncheckedIcon from "../../assets/radio-unchecked.svg";
 
 interface TaskProps {
   task: TaskType;
+  reportError: (error: string) => void;
 }
 
-export const Task = ({ task }: TaskProps) => {
+export const Task = ({ task, reportError }: TaskProps) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -28,12 +29,18 @@ export const Task = ({ task }: TaskProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
+    onError: () => {
+      reportError("There was a probem with your request. Try again later.");
+    },
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteTask,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    },
+    onError: () => {
+      reportError("There was a probem with your request. Try again later.");
     },
   });
 

@@ -7,6 +7,7 @@ export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [signingIn, setSigningIn] = useState(false);
+  const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(!localStorage.getItem("token"));
 
   const queryClient = useQueryClient();
@@ -18,6 +19,11 @@ export const Login = () => {
 
       setShowModal(false);
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    },
+    onError: (error) => {
+      setError(error.message);
+
+      setSigningIn(false);
     },
   });
 
@@ -37,6 +43,7 @@ export const Login = () => {
 
   const handleSubmit = () => {
     setSigningIn(true);
+    setError("");
 
     loginMutation.mutate({
       username,
@@ -68,6 +75,7 @@ export const Login = () => {
               data-testid="password"
             />
           </Form.Group>
+          <p className="text-danger">{error}</p>
           <div className="sign-in-button-group">
             <Button
               onClick={handleSubmit}

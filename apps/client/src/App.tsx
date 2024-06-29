@@ -12,7 +12,7 @@ function App() {
   const [showHelp, setShowHelp] = useState(false);
   const helpTarget = useRef(null);
 
-  const { data } = useQuery({
+  const { data, error } = useQuery({
     queryKey: ["tasks"],
     queryFn: getTasks,
   });
@@ -84,6 +84,7 @@ function App() {
         <br />
         <Row className="tasks-list-row">
           <Col md={8}>
+            <p className="text-danger">{error?.message}</p>
             <TasksList tasks={data} />
           </Col>
         </Row>
