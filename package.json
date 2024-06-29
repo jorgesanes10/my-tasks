@@ -1,0 +1,21 @@
+{
+  "name": "my-tasks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "turbo dev",
+    "e2e-tests": "turbo cy:open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces": [
+    "apps/*",
+    "cypress"
+  ],
+  "packageManager": "npm@10.7.0",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "turbo": "^2.0.6"
+  }
+}

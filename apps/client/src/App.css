@@ -1,0 +1,82 @@
+h1 {
+  text-align: center;
+  padding-top: 8px;
+}
+
+.btn.unstyled {
+  background: none;
+  border: none;
+}
+
+.btn.unstyled:hover,
+.btn.unstyled:active {
+  background-color: transparent !important;
+}
+
+.tasks-list-row {
+  justify-content: center;
+}
+
+.tasks-list-row section {
+  display: flex;
+  flex-direction: column;
+}
+
+.tasks-list-row section #add-task-button {
+  align-self: center;
+}
+
+.task-wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.task-wrapper .text-block {
+  flex-grow: 1;
+}
+
+.task-wrapper .text-block input {
+  width: 100%;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+.task-wrapper .text-block input.title {
+  font-size: 24px;
+}
+
+.task-wrapper .text-block input.description {
+  font-size: 16px;
+  color: #797979;
+}
+
+.help-popover {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-size: 14px;
+}
+
+.help-popover ul {
+  padding-left: 20px;
+}
+
+.help-popover ul,
+.help-popover p {
+  margin: 0;
+}
+
+.center-col {
+  display: flex;
+  justify-content: center;
+}
+
+.sign-in-button-group {
+  display: flex;
+  justify-content: center;
+}
