@@ -23,3 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("getLastTask", (selector) => {
+  cy.get(`[data-testid="task-wrapper"]:last ${selector}`);
+});

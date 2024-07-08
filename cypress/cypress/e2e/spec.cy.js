@@ -11,81 +11,60 @@ describe("My Tasks is working", () => {
     // adds a new task
     cy.get('[data-testid="add-task-button"]').click();
 
-    cy.get(":nth-last-child(2) > .text-block > .title").type(
-      "This is my automated task"
-    );
-    cy.get(":nth-last-child(2) > .text-block > .title").type("{enter}");
+    cy.getLastTask(".title").type("My task");
+    cy.getLastTask(".title").type("{enter}");
 
-    cy.get(":nth-last-child(2) > .text-block > .description").type(
-      "This is the description for the task"
-    );
-    cy.get(":nth-last-child(2) > .text-block > .description").type("{enter}");
+    cy.getLastTask(".description").type("My description");
+    cy.getLastTask(".description").type("{enter}");
 
     // reloads the page to test persistence of data
 
     cy.wait(1000);
     cy.reload();
 
-    cy.get(":nth-last-child(2) > .text-block > .title").should(
-      "have.value",
-      "This is my automated task"
-    );
-    cy.get(":nth-last-child(2) > .text-block > .description").should(
-      "have.value",
-      "This is the description for the task"
-    );
+    cy.getLastTask(".title").should("have.value", "My task");
+    cy.getLastTask(".description").should("have.value", "My description");
 
     // Modifies the latest task data
 
-    cy.get(":nth-last-child(2) > .text-block > .title").type(" later");
-    cy.get(":nth-last-child(2) > .text-block > .title").type("{enter}");
+    cy.getLastTask(".title").type(" later");
+    cy.getLastTask(".title").type("{enter}");
 
-    cy.get(":nth-last-child(2) > .text-block > .description").type(" later");
-    cy.get(":nth-last-child(2) > .text-block > .description").type("{enter}");
+    cy.getLastTask(".description").type(" later");
+    cy.getLastTask(".description").type("{enter}");
 
     cy.wait(1000);
     cy.reload();
 
-    cy.get(":nth-last-child(2) > .text-block > .title").should(
-      "have.value",
-      "This is my automated task later"
-    );
-    cy.get(":nth-last-child(2) > .text-block > .description").should(
-      "have.value",
-      "This is the description for the task later"
-    );
+    cy.getLastTask(".title").should("have.value", "My task later");
+    cy.getLastTask(".description").should("have.value", "My description later");
 
     // checks the task
 
-    cy.get(":nth-last-child(2) > .unstyled").click();
+    cy.getLastTask(`.check-button`).click();
 
     cy.wait(1000);
     cy.reload();
 
-    cy.get(":nth-last-child(2) > .unstyled").should("have.class", "completed");
+    cy.getLastTask(`.check-button`).should("have.class", "completed");
 
     // unchecks the task
 
-    cy.get(":nth-last-child(2) > .unstyled").click();
+    cy.getLastTask(`.check-button`).click();
 
     cy.wait(1000);
     cy.reload();
 
-    cy.get(":nth-last-child(2) > .unstyled").should(
-      "not.have.class",
-      "completed"
-    );
+    cy.getLastTask(`.check-button`).should("not.have.class", "completed");
 
     // deletes the task
-    cy.get(":nth-last-child(2) > .text-block > .title").clear();
-    cy.get(":nth-last-child(2) > .text-block > .title").type("{enter}");
+    cy.getLastTask(".title").clear();
+    cy.getLastTask(".title").type("{enter}");
 
     cy.wait(1000);
     cy.reload();
+    cy.wait(1000);
 
-    cy.get(":nth-last-child(2) > .text-block > .title").should(
-      "not.have.value",
-      "This is my automated task later"
-    );
+    cy.getLastTask(".title").should("not.have.value", "My task later");
   });
 });

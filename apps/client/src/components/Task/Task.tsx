@@ -30,7 +30,7 @@ export const Task = ({ task, reportError }: TaskProps) => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
     onError: () => {
-      reportError("There was a probem with your request. Try again later.");
+      reportError("There was a problem with your request. Try again later.");
     },
   });
 
@@ -40,7 +40,7 @@ export const Task = ({ task, reportError }: TaskProps) => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
     onError: () => {
-      reportError("There was a probem with your request. Try again later.");
+      reportError("There was a problem with your request. Try again later.");
     },
   });
 
@@ -88,10 +88,10 @@ export const Task = ({ task, reportError }: TaskProps) => {
   };
 
   return (
-    <article className="task-wrapper">
+    <article className="task-wrapper" data-testid="task-wrapper">
       <Button
         onClick={handleClick}
-        className={classnames("unstyled", {
+        className={classnames("unstyled", "check-button", {
           completed: task.completed,
         })}
       >
